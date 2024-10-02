@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Website</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar is fixed -->
+        <aside class="w-62 bg-white shadow-lg fixed top-0 left-0 h-full">
+            <div class="p-6 bg-blue-600 text-white">
+                <h2 class="text-xl font-bold tracking-wide">Dashboard</h2>
+            </div>
+            <%- include('../partials/sidebar') %>
+        </aside>
+
+
+        <!-- Main Content (scrollable) -->
+        <div class="ml-40 flex-1 p-8 overflow-auto h-screen">
+            <header class="mb-8">
+                <h1 class="text-4xl font-extrabold text-gray-900">Welcome to Your Dashboard</h1>
+                <nav class="mt-4">
+                    <ul class="flex space-x-4">
+                        <li><a href="/admin/products" class="text-blue-600 font-semibold hover:underline">Products</a></li>
+                        <li>/</li>
+                        <li><a href="#" class="text-blue-600 font-semibold hover:underline">Edit</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <section>
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                       <div class="p-6">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Edit Product</h2>
+                        <form action="/admin/products/edit/<%= product.id %>" method="post" enctype="multipart/form-data">
+                            <div class="grid grid-cols-5 gap-2 flex">
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Product Name</label>
+                                    <input type="text" name="name" value="<%= product.name %>" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Description</label>
+                                    <textarea name="description" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required><%= product.description %></textarea>
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Price</label>
+                                    <input type="number" step="0.01" name="price" value="<%= product.price %>" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Stock</label>
+                                    <input type="number" name="stock" value="<%= product.stock %>" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Category</label>
+                                    <input type="text" name="category" value="<%= product.category %>" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-gray-700">Image</label>
+                                    <input type="file" name="image" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div class="col-span-1">
+                                    <img src="/images/<%= product.image %>" alt="<%= product.name %>" class="w-10 h-10">
+                                    <h1><%= product.image %></h1>
+                                </div>
+                            </div>
+                            <button type="submit" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">Update Product</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+</body>
+</html>

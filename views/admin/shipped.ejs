@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard with DataTables</title>
+    <%- include('../partials/link') %>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex min-h-screen">
+        <aside class="w-62 bg-white shadow-lg fixed top-0 left-0 h-full">
+            <div class="p-6 bg-blue-600 text-white">
+                <h2 class="text-xl font-bold tracking-wide">Dashboard</h2>
+            </div>
+            <%- include('../partials/sidebar') %>
+        </aside>
+
+        <div class="ml-40 flex-1 p-8 overflow-auto h-screen">
+            <header class="mb-8">
+                <h1 class="text-4xl font-extrabold text-gray-900">Shipped Orders</h1>
+                <nav class="mt-4">
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="text-blue-600 font-semibold hover:underline">Orders</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <section>
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Order List</h2>
+                    <table id="example" class="display w-full">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Customer</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% if (orders && orders.length) { %>
+                                <% orders.forEach(order => { %>
+                                    <% if (order.orderitems && order.orderitems.length) { %>
+                                        <% order.orderitems.forEach(item => { %> >
+                                            <tr>
+                                                <td><%= item.product.name %></td> 
+                                                <td><%= item.quantity %></td> 
+                                                <td><%= item.product.price.toFixed(2) %></td> 
+                                                <td><%= order.user.username %></td> 
+                                                <td><%= (item.quantity * item.product.price).toFixed(2) %></td> 
+                                                <td><%= order.status %></td>
+                                                <td>
+                                                    <a href="/admin/orders/view/<%= order.id %>" class="text-white bg-blue-500 p-1 rounded-md">view</a>
+                                                </td>
+                                            </tr>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="7" class="text-center">No items found for this order.</td>
+                                        </tr>
+                                    <% } %>
+                                <% }); %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7" class="text-center">No orders found.</td>
+                                </tr>
+                            <% } %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <% if (productMessage) { %>
+        <script>
+            $(document).ready(function() {
+                toastr.success("<%= productMessage %>", 'Success');
+            });
+        </script>
+    <% } %>
+    <%- include('../partials/script') %>
+
+</body>
+</html>

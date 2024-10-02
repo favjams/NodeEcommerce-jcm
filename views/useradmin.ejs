@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancit Canton Delights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #e67e22;
+        }
+        .hero {
+            background-image: url('https://example.com/pancit-canton.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #e67e22;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #d35400;
+        }
+        .services {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        .services h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-card-content {
+            padding: 20px;
+        }
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            padding: 80px 0;
+        }
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-bottom {
+            margin-top: 40px;
+            border-top: 1px solid #555;
+            padding-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Lucky Me Pancit Canton</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to Lucky Me Pancit Canton</h1>
+                <p>Serving the best Pancit Canton dishes you'll ever taste!</p>
+                <a href="#" class="btn">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="services">
+        <div class="container">
+            <h2>Our Best Product</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Classic Pancit Canton">
+                    <div class="service-card-content">
+                        <h3>Classic Pancit Canton</h3>
+                        <p>Experience the authentic flavors of our Classic Pancit Canton.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Spicy Pancit Canton">
+                    <div class="service-card-content">
+                        <h3>Spicy Pancit Canton</h3>
+                        <p>A spicy twist on the traditional Pancit Canton for those who love the heat.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Seafood Pancit Canton">
+                    <div class="service-card-content">
+                        <h3>Seafood Pancit Canton</h3>
+                        <p>Our Pancit Canton is loaded with fresh seafood for a mouth-watering experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <img src="/placeholder.svg?height=80&width=80" alt="Customer 1">
+                    <p>"The Pancit Canton here is absolutely delicious! I can't get enough!"</p>
+                    <h4>Maria Garcia</h4>
+                </div>
+                <div class="testimonial-card">
+                    <img src="/placeholder.svg?height=80&width=80" alt="Customer 2">
+                    <p>"The spicy Pancit Canton is my favorite! Perfect for those who love a little heat."</p>
+                    <h4>John Smith</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Lucky Me Pancit Canton serves a variety of delicious Pancit Canton dishes made with the freshest ingredients.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>456 Noodle Street, Yumtown, YT 56789</p>
+                    <p>Phone: (555) 987-6543</p>
+                    <p>Email: info@pancitcantondelights.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lucky Me Pancit Canton. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

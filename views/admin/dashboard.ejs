@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard</title>
+    <link rel="stylesheet" href="/css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar is fixed -->
+        <aside class="w-62 bg-white shadow-lg fixed top-0 left-0 h-full">
+            <div class="p-6 bg-blue-600 text-white">
+                <h2 class="text-xl font-bold tracking-wide">Dashboard</h2>
+            </div>
+            <%- include('../partials/sidebar') %>
+        </aside>
+
+        <!-- Main Content (scrollable) -->
+        <div class="ml-40 flex-1 p-8 overflow-auto h-screen">
+            <header class="mb-8">
+                <h1 class="text-4xl font-extrabold text-gray-900">Welcome to Your Dashboard</h1>
+            </header>
+
+            <section>
+                <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Product Statistics</h2>
+                    <canvas id="productChart" class="h-64"></canvas>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Product List</h2>
+                    <table class="min-w-full border-collapse border border-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-200 p-4">Product ID</th>
+                                <th class="border border-gray-200 p-4">Product Name</th>
+                                <th class="border border-gray-200 p-4">Category</th>
+                                <th class="border border-gray-200 p-4">Stock</th>
+                                <th class="border border-gray-200 p-4">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- Dynamic product rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        async function fetchProductData() {
+            const response = await fetch('/api/products'); // Fetch products data from the backend
+            const products = await response.json();
+            return products;
+        }
+
+        async function renderProductChart(products) {
+            const productNames = products.map(product => product.name);
+            const productStock = products.map(product => product.stock);
+
+            const ctx = document.getElementById('productChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: productNames,
+                    datasets: [{
+                        label: 'Stock',
+                        data: productStock,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        async function renderProductTable(products) {
+            const tableBody = document.getElementById('productTableBody');
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="border border-gray-200 p-4">${product.id}</td>
+                    <td class="border border-gray-200 p-4">${product.name}</td>
+                    <td class="border border-gray-200 p-4">${product.category}</td>
+                    <td class="border border-gray-200 p-4">${product.stock}</td>
+                    <td class="border border-gray-200 p-4">${product.price}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        async function initializeDashboard() {
+            const products = await fetchProductData();
+            await renderProductChart(products);
+            await renderProductTable(products);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+    </script>
+
+</body>
+</html>
